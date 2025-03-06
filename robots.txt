@@ -1,0 +1,4 @@
+User-agent: *
+Disallow: /wp-admin/
+Disallow: /error/
+Sitemap: https://game.reapbucks.com/sitemap.xml

@@ -1,0 +1,49 @@
+#RewriteEngine on 
+#RewriteCond %{REQUEST_FILENAME} !-d
+#RewriteCond %{REQUEST_FILENAME}\.php -f
+#RewriteRule ^(.*)$ $1.php [NC,L]
+
+RewriteEngine on 
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteRule ^blogs/?$ blogs.php
+RewriteRule ^privacy-policy?$ privacy-policy.php
+RewriteRule ^terms-and-conditions?$ terms-of-service.php
+RewriteRule ^(disclaimer)/?$ disclaimer.php
+RewriteRule ^(faq)/?$ faq.php
+RewriteRule ^(about-us)/?$ about-us.php
+RewriteRule ^(trending-now)/?$ trending-now.php
+RewriteRule ^(sports)/?$ sports.php
+RewriteRule ^(general-knowledge)/?$ general-knowledge.php
+RewriteRule ^(entertainment)/?$ entertainment.php
+RewriteRule ^(funny)/?$ funny.php
+RewriteRule ^(contact-us)/?$ contact-us.php
+RewriteRule ^view-game/([^/\.]+)$ details.php?game=$1 [L,QSA]
+RewriteRule ^start-game/([^/\.]+)$ play.php?game_id=$1 [L,QSA]
+RewriteRule ^blog-details/([^/\.]+)$ blog_single.php?blog=$1 [L,QSA]
+ErrorDocument 404 /error/404.php
+
+
+# Redirect www to non-www
+RewriteCond %{HTTP_HOST} ^www\.game.reapbucks\.com [NC]
+RewriteRule ^(.*)$ https://game.reapbucks.com/$1 [R=301,L]
+
+# Redirect http to https
+RewriteCond %{HTTPS} off
+RewriteRule ^ https://game.reapbucks.com%{REQUEST_URI} [L,R=301]
+
+#GZIP compression
+<IfModule mod_deflate.c>
+    AddOutputFilterByType DEFLATE text/html text/css application/javascript
+</IfModule>
+# BEGIN cPanel-generated php ini directives, do not edit
+# Manual editing of this file may result com unexpected behavior.
+# To make changes to this file, use the cPanel MultiPHP INI Editor (Home >> Software >> MultiPHP INI Editor)
+# For more information, read our documentation (https://go.cpanel.net/EA4ModifyINI)
+<IfModule php7_module>
+   php_value error_reporting E_ALL & ~E_NOTICE & ~E_DEPRECATED
+</IfModule>
+<IfModule lsapi_module>
+   php_value error_reporting E_ALL & ~E_NOTICE & ~E_DEPRECATED
+</IfModule>
+# END cPanel-generated php ini directives, do not edit
